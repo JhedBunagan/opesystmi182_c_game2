@@ -15,7 +15,8 @@ void initCurses() {
 
 /*Instructions*/
 void ints(){
-    mvprintw((screenY - strlen("qwertyuiopqwertyuiop"))/2,  screenX/2, "qwertyuiopwertyuiop");
+    char message[] = "Press the Space bar ( _ ) button for Inputing:";
+    mvprintw((screenY - 9)/2, (screenX - strlen(message))/2, message);
 }
 
 /* Draw game grid */
@@ -23,16 +24,14 @@ void drawBoard() {
 
     int i, h;
 
-    for(i=0;i<=6;i++) {
-        mvprintw(i, 0, "|");
-        mvprintw(i, 4, "|");
-        mvprintw(i, 8, "|");
-        mvprintw(i, 4, "|");
-        mvprintw(i, 8, "|");
-        mvprintw(i, 12,"|");
+    for(i = 0; i <= 6; i++) {
+        mvprintw((screenY - 9)/2 + 1 + i, (screenX - 13)/2 + 0, "|");
+        mvprintw((screenY - 9)/2 + 1 + i, (screenX - 13)/2 + 4, "|");
+        mvprintw((screenY - 9)/2 + 1 + i, (screenX - 13)/2 + 8, "|");
+        mvprintw((screenY - 9)/2 + 1 + i, (screenX - 13)/2 + 12,"|");
 
-        if(i%2 == 0){
-            for(h=0;h<=12;h++) {
+        if(i % 2 == 0){
+            for(h = 0; h <= 12; h++) {
                 mvprintw(i, h, "-");
             }
         }
@@ -64,7 +63,7 @@ int playGame() {
         initBoard(boardData);
 
         /* Move to y=8, x = 0 */
-        mvprintw(8, 0, "It is Player 1\"s turn to place an (X)");
+        mvprintw(8, 0, "It is Player 1's turn to place an (X)");
         move(y, x); /* move to origin */
         refresh();
 
@@ -130,7 +129,7 @@ int playGame() {
                                 nMoves += 1;
 
                                 playerNum = 2;
-                                mvprintw(8, 0, "It is Player 2\"s turn to place an (O)");
+                                mvprintw(8, 0, "It is Player 2's turn to place an (O)");
                                 move(y, x);
                                 /*refresh();*/
 
@@ -158,7 +157,7 @@ int playGame() {
                                 nMoves += 1;
 
                                 playerNum = 1;
-                                mvprintw(8, 0, "It is Player 1\"s turn to place an (X)");
+                                mvprintw(8, 0, "It is Player 1's turn to place an (X)");
                                 move(y, x);
                                 /*refresh();*/
                         }
