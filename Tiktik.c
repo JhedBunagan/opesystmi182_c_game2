@@ -1,6 +1,6 @@
+
 #include <ncurses.h>
 #include <string.h>
-
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -11,24 +11,76 @@
 #define PLAYER_1 1
 #define PLAYER_2 2
 
-
 #define OKAY 5
 
-void initCurses();
-void drawBoard();
-void initBoard(int * boardData);
-int playGame();
-int updateBoardData(int * boardData, int x, int y, int XorO);
-int checkWin(int * boardData);
+int updateBoardData(int * boardData, int x, int y, int XorO) {
+        /* Check row 1*/
+        if(y == 1){
+                if(x == 2){
+                        if(boardData[0] > 1){
+                                boardData[0] = XorO;
+                                return 1;
+                        }
+                }
+                else if( x == 6){
+                        if(boardData[1] > 1){
+                                boardData[1] = XorO;
+                                return 1;
+                        }
+                }
+                else if( x == 10){
+                        if(boardData[2] > 1){
+                                boardData[2] = XorO;
+                                return 1;
+                        }
+                }
+        }
 
+        /* Check row 2 */
+        else if(y == 3){
+                if(x == 2){
+                        if(boardData[3] > 1){
+                                boardData[3] = XorO;
+                                return 1;
+                        }
+                }
+                else if( x == 6){
+                        if(boardData[4] > 1){
+                                boardData[4] = XorO;
+                                return 1;
+                        }
+                }
+                else if( x == 10){
+                        if(boardData[5] > 1){
+                                boardData[5] = XorO;
+                                return 1;
+                        }
+                }
+        }
 
-
-
-
-
-
-
-
+        /* Check row 3*/
+        else if(y == 5){
+                if(x == 2){
+                        if(boardData[6] > 1){
+                                boardData[6] = XorO;
+                                return 1;
+                        }
+                }
+                else if( x == 6){
+                        if(boardData[7] > 1){
+                                boardData[7] = XorO;
+                                return 1;
+                        }
+                }
+                else if( x == 10){
+                        if(boardData[8] > 1){
+                                boardData[8] = XorO;
+                                return 1;
+                        }
+                }
+        }
+        return 0;
+}
 
 int screenY = 0;
 int screenX = 0;
@@ -46,6 +98,7 @@ void ints(){
     char message[] = "Press the Space bar ( _ ) button for Inputing:";
     mvprintw((screenY - 9)/2, (screenX - strlen(message))/2, message);
 }
+
 
 /* Draw game grid */
 void drawBoard() {
@@ -69,13 +122,44 @@ void drawBoard() {
     ints();
 }
 
-void initBoard(int * boardData){
+void initBoard(int * boardData) {
 
     int i;
 
     for(i=0; i<=8;i++){
         boardData[i] = i+2;
     }
+}
+
+int checkWin(int * boardData) {
+
+        /* Check rows */
+        if( boardData[0] == boardData[1] && boardData[1] == boardData[2] )
+                return 1;
+        else if( boardData[3] == boardData[4] && boardData[4] == boardData[5] )
+                return 1;
+        else if( boardData[6] == boardData[7] && boardData[7] == boardData[8] )
+                return 1;
+
+        /* Check cols */
+        else if( boardData[0] == boardData[3] && boardData[3] == boardData[6] )
+                return 1;
+        else if( boardData[1] == boardData[4] && boardData[4] == boardData[7] )
+                return 1;
+        else if( boardData[2] == boardData[5] && boardData[5] == boardData[8] )
+                return 1;
+
+        /* Check diagonals */
+        else if( boardData[0] == boardData[4] && boardData[4] == boardData[8] )
+                return 1;
+        else if( boardData[2] == boardData[4] && boardData[4] == boardData[6] )
+                return 1;
+
+        else
+                return 0;
+
+        return 0;
+
 }
 
 int playGame() {
@@ -192,107 +276,19 @@ int playGame() {
                 }
                 refresh();
         }
-        return FALSE;
+        return 0;
         endwin();
 
 }
 
-int updateBoardData(int * boardData, int x, int y, int XorO) {
+int main() {
+    do {
+            initCurses();
+            drawBoard();
+    }
 
-        /* Check row 1*/
-        if(y == 1){
-                if(x == 2){
-                        if(boardData[0] > 1){
-                                boardData[0] = XorO;
-                                return OKAY;
-                        }
-                }
-                else if( x == 6){
-                        if(boardData[1] > 1){
-                                boardData[1] = XorO;
-                                return OKAY;
-                        }
-                }
-                else if( x == 10){
-                        if(boardData[2] > 1){
-                                boardData[2] = XorO;
-                                return OKAY;
-                        }
-                }
-        }
+    while (playGame());
 
-        /* Check row 2 */
-        else if(y == 3){
-                if(x == 2){
-                        if(boardData[3] > 1){
-                                boardData[3] = XorO;
-                                return OKAY;
-                        }
-                }
-                else if( x == 6){
-                        if(boardData[4] > 1){
-                                boardData[4] = XorO;
-                                return OKAY;
-                        }
-                }
-                else if( x == 10){
-                        if(boardData[5] > 1){
-                                boardData[5] = XorO;
-                                return OKAY;
-                        }
-                }
-        }
-
-        /* Check row 3*/
-        else if(y == 5){
-                if(x == 2){
-                        if(boardData[6] > 1){
-                                boardData[6] = XorO;
-                                return OKAY;
-                        }
-                }
-                else if( x == 6){
-                        if(boardData[7] > 1){
-                                boardData[7] = XorO;
-                                return OKAY;
-                        }
-                }
-                else if( x == 10){
-                        if(boardData[8] > 1){
-                                boardData[8] = XorO;
-                                return OKAY;
-                        }
-                }
-        }
-        return FALSE;
+    endwin();
+    return 0;
 }
-
-int checkWin(int * boardData) {
-
-        /* Check rows */
-        if( boardData[0] == boardData[1] && boardData[1] == boardData[2] )
-                return TRUE;
-        else if( boardData[3] == boardData[4] && boardData[4] == boardData[5] )
-                return TRUE;
-        else if( boardData[6] == boardData[7] && boardData[7] == boardData[8] )
-                return TRUE;
-
-        /* Check cols */
-        else if( boardData[0] == boardData[3] && boardData[3] == boardData[6] )
-                return TRUE;
-        else if( boardData[1] == boardData[4] && boardData[4] == boardData[7] )
-                return TRUE;
-        else if( boardData[2] == boardData[5] && boardData[5] == boardData[8] )
-                return TRUE;
-
-        /* Check diagonals */
-        else if( boardData[0] == boardData[4] && boardData[4] == boardData[8] )
-                return TRUE;
-        else if( boardData[2] == boardData[4] && boardData[4] == boardData[6] )
-                return TRUE;
-
-        else
-                return FALSE;
-
-}
-
