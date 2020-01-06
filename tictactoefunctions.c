@@ -60,7 +60,7 @@ void drawBoard() {
 
         if(i % 2 == 0){
             for(h = 0; h <= 12; h++) {
-                mvprintw(i, h, "-");
+                mvprintw(i+20, h+30, "-");
             }
         }
         move(1,2);

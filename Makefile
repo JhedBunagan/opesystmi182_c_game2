@@ -1,5 +1,5 @@
 all:
-	gcc -Wall -ansi Tiktik.c -Iinclude -o Tiktik -lncurses
+	gcc -Wall -ansi tictactoe.c tictactoefunctions.c -Iinclude -o TicTacToe -lncurses
 
 clean:
-	rm Tiktik
+	rm tictactoe
