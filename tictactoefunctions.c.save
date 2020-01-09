@@ -24,12 +24,6 @@ int checkWin(int * boardData);
 
 
 
-
-
-
-
-
-
 int screenY = 0;
 int screenX = 0;
 
@@ -60,7 +54,7 @@ void drawBoard() {
 
         if(i % 2 == 0){
             for(h = 0; h <= 12; h++) {
-                mvprintw(i+18, h+77, "-");
+                mvprintw(i, h, "-");
             }
         }
         move(1,2);
@@ -295,3 +289,4 @@ int checkWin(int * boardData) {
                 return FALSE;
 
 }
+
