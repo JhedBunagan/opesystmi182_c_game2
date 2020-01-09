@@ -44,7 +44,11 @@ void initCurses() {
 /*Instructions*/
 void ints(){
     char message[] = "Press the Space bar ( _ ) button for Inputing:";
-    mvprintw((screenY - 9)/2, (screenX - strlen(message))/2, message);
+    char exits[] = "Press 'Ctrl + C' to EXIT"; 
+    mvprintw((screenY - 20)/2, (screenX - strlen(message))/2, message);
+    
+    /*exit*/
+    mvprintw((screenY - 18)/2, (screenX - strlen(exits))/2, exits);
 }
 
 /* Draw game grid */
@@ -88,10 +92,15 @@ int playGame() {
         int canWeMove = 0;
         int nMoves = 0;
 
+        char pOneTurn[]="It is Player 1's turn to place an (X)";
+
         initBoard(boardData);
 
+        
         /* Move to y=8, x = 0 */
-        mvprintw(8, 0, "It is Player 1's turn to place an (X)");
+ 	
+	mvprintw((screenY - 10)/2, (screenX - strlen(pOneTurn))/2, pOneTurn);       
+        
         move(y, x); /* move to origin */
         refresh();
 
