@@ -93,13 +93,18 @@ int playGame() {
         int nMoves = 0;
 
         char pOneTurn[]="It is Player 1's turn to place an (X)";
+        char pTwoTurn[]="It is Player 2's turn to place an (O)";
+        char tieGame[]= "Tie Game";
+        char oneWin[]="Player 1 WIN!";
+        char twoWin[]="Player 2 WIN!";
+
 
         initBoard(boardData);
 
         
         /* Move to y=8, x = 0 */
- 	
-	mvprintw((screenY - 10)/2, (screenX - strlen(pOneTurn))/2, pOneTurn);       
+        
+        mvprintw((screenY - 10)/2, (screenX - strlen(pOneTurn))/2, pOneTurn);
         
         move(y, x); /* move to origin */
         refresh();
@@ -107,7 +112,7 @@ int playGame() {
         while (inputChar != 'q') {
 
                 if(nMoves == 9) {
-                        mvprintw(10, 0, "Tie game");
+                        mvprintw((screenY - 10)+ 1/2, (screenX - strlen(tieGame))/2, tieGame);
                         inputChar = getch();
                         erase();
                         return 3;
@@ -158,7 +163,7 @@ int playGame() {
 
                                 if(didWin){
 
-                                        mvprintw(10,0, "Player 1 wins");
+                                        mvprintw((screenY - 10)+ 1/2, (screenX - strlen(oneWin))/2, oneWin);
                                         inputChar = getch();
                                         erase();
                                         return TRUE;
@@ -166,7 +171,8 @@ int playGame() {
                                 nMoves += 1;
 
                                 playerNum = 2;
-                                mvprintw(8, 0, "It is Player 2's turn to place an (O)");
+                                /*p2 mag lagay ng O*/
+                                mvprintw((screenY - 10)/2, (screenX - strlen(pTwoTurn))/2, pTwoTurn);
                                 move(y, x);
                                 /*refresh();*/
 
@@ -186,7 +192,7 @@ int playGame() {
 
                                 if(didWin){
 
-                                        mvprintw(10,0, "Player 2 wins");
+                                        mvprintw((screenY - 10)+ 1/2, (screenX - strlen(twoWin))/2, twoWin);
                                         inputChar = getch();
                                         erase();
                                         return TRUE;
@@ -194,7 +200,8 @@ int playGame() {
                                 nMoves += 1;
 
                                 playerNum = 1;
-                                mvprintw(8, 0, "It is Player 1's turn to place an (X)");
+                                /*p1 mag lagay ng x*/
+                                mvprintw((screenY - 10)/2, (screenX - strlen(pOneTurn))/2, pOneTurn);
                                 move(y, x);
                                 /*refresh();*/
                         }
