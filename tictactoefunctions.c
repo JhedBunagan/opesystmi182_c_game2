@@ -95,8 +95,9 @@ int playGame() {
         char pOneTurn[]="It is Player 1's turn to place an (X)";
         char pTwoTurn[]="It is Player 2's turn to place an (O)";
         char tieGame[]= "Tie Game";
-        char oneWin[]="Player 1 WIN!";
-        char twoWin[]="Player 2 WIN!";
+        char oneWin[]= "Player 1 WIN!";
+        char twoWin[]= "Player 2 WIN!";
+        char playAg[]= "Press any key to play again.";
 
 
         initBoard(boardData);
@@ -113,6 +114,7 @@ int playGame() {
 
                 if(nMoves == 9) {
                         mvprintw((screenY - 10)+ 1/2, (screenX - strlen(tieGame))/2, tieGame);
+                        mvprintw((screenY - 8)+ 1/2, (screenX - strlen(playAg))/2, playAg);
                         inputChar = getch();
                         erase();
                         return 3;
@@ -164,6 +166,8 @@ int playGame() {
                                 if(didWin){
 
                                         mvprintw((screenY - 10)+ 1/2, (screenX - strlen(oneWin))/2, oneWin);
+                                        mvprintw((screenY - 8)+ 1/2, (screenX - strlen(playAg))/2, playAg);
+
                                         inputChar = getch();
                                         erase();
                                         return TRUE;
@@ -193,6 +197,8 @@ int playGame() {
                                 if(didWin){
 
                                         mvprintw((screenY - 10)+ 1/2, (screenX - strlen(twoWin))/2, twoWin);
+                                        mvprintw((screenY - 8)+ 1/2, (screenX - strlen(playAg))/2, playAg);
+
                                         inputChar = getch();
                                         erase();
                                         return TRUE;
