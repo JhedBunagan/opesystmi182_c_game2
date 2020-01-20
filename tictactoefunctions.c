@@ -87,7 +87,7 @@ int playGame() {
         int boardData[9];
         int playerNum = 1;
         int inputChar = ' ';
-        int screenX = 2,  screenY = 1;
+        int pgX = 2, pgY = 1;
         int didWin = 0;
         int canWeMove = 0;
         int nMoves = 0;
@@ -107,7 +107,7 @@ int playGame() {
         
         mvprintw((screenY - 10)/2, (screenX - strlen(pOneTurn))/2, pOneTurn);
         
-        move(screenY, screenX); /* move to origin */
+        move(pgY, pgX); /* move to origin */
         refresh();
 
         while (inputChar != 'q') {
@@ -127,25 +127,25 @@ int playGame() {
                         switch (inputChar){
 
                                 case KEY_UP:
-                                        if(screenY == 3 || screenY == 5){
-                                                move(screenY-=2, screenX);
+                                        if(pgY == 3 || pgY == 5){
+                                                move(pgY-=2, pgX);
                                         }
                                         break;
 
                                 case KEY_DOWN:
-                                        if(screenY == 1 || screenY == 3){
-                                                move(screenY+=2, screenX);
+                                        if(pgY == 1 || pgY == 3){
+                                                move(pgY+=2, pgX);
                                         }
                                         break;
 
                                 case KEY_LEFT:
-                                        if(screenX == 10 || screenX == 6){
-                                                move(screenY, screenX-=4);
+                                        if(pgX == 10 || pgX == 6){
+                                                move(pgY, pgX-=4);
                                         }
                                         break;
                                 case KEY_RIGHT:
-                                        if(screenX == 2 || screenX == 6){
-                                                move(screenY, screenX+=4);
+                                        if(pgX == 2 || pgX == 6){
+                                                move(pgY, pgX+=4);
                                         }
                                         break;
                         }
@@ -153,12 +153,12 @@ int playGame() {
 
                 else if(playerNum == PLAYER_1 && inputChar == ' '){
 
-                        getyx(stdscr, screenY, screenX);
-                        canWeMove = updateBoardData(boardData, screenX, screenY,1);
+                        getyx(stdscr, pgY, pgX);
+                        canWeMove = updateBoardData(boardData, pgX, pgY,1);
 
                         if(canWeMove == OKAY) {
 
-                                mvprintw(screenY, screenX, "X");
+                                mvprintw(pgY, pgX, "X");
 
                                 /* Returns 1 if last move caused winning scenario */
                                 didWin = checkWin(boardData);
@@ -177,19 +177,19 @@ int playGame() {
                                 playerNum = 2;
                                 /*p2 mag lagay ng O*/
                                 mvprintw((screenY - 10)/2, (screenX - strlen(pTwoTurn))/2, pTwoTurn);
-                                move(screenY, screenX);
+                                move(pgY, pgX);
                                 /*refresh();*/
 
                         }
                 }
                 else if(playerNum == PLAYER_2 && inputChar == ' ') {
 
-                        getyx(stdscr, screenY, screenX);
-                        canWeMove = updateBoardData(boardData, screenX, screenY,0);
+                        getyx(stdscr, pgY, pgX);
+                        canWeMove = updateBoardData(boardData, pgX, pgY,0);
 
                         if(canWeMove == OKAY) {
 
-                                mvprintw(screenY, screenX, "O");
+                                mvprintw(pgY, pgX, "O");
 
                                 /* Returns 1 if last move caused winning scenario */
                                 didWin = checkWin(boardData);
@@ -208,7 +208,7 @@ int playGame() {
                                 playerNum = 1;
                                 /*p1 mag lagay ng x*/
                                 mvprintw((screenY - 10)/2, (screenX - strlen(pOneTurn))/2, pOneTurn);
-                                move(screenY, screenX);
+                                move(pgY, pgX);
                                 /*refresh();*/
                         }
                 }
@@ -219,23 +219,23 @@ int playGame() {
 
 }
 
-int updateBoardData(int * boardData, int screenX, int screenY, int XorO) {
+int updateBoardData(int * boardData, int pgX, int pgY, int XorO) {
 
         /* Check row 1*/
-        if(screenY == 1){
-                if(screenX == 2){
+        if(pgY == 1){
+                if(pgX == 2){
                         if(boardData[0] > 1){
                                 boardData[0] = XorO;
                                 return OKAY;
                         }
                 }
-                else if( screenX == 6){
+                else if( pgX == 6){
                         if(boardData[1] > 1){
                                 boardData[1] = XorO;
                                 return OKAY;
                         }
                 }
-                else if( screenX == 10){
+                else if( pgX == 10){
                         if(boardData[2] > 1){
                                 boardData[2] = XorO;
                                 return OKAY;
@@ -244,20 +244,20 @@ int updateBoardData(int * boardData, int screenX, int screenY, int XorO) {
         }
 
         /* Check row 2 */
-        else if(screenY == 3){
-                if(screenX == 2){
+        else if(pgY == 3){
+                if(pgX == 2){
                         if(boardData[3] > 1){
                                 boardData[3] = XorO;
                                 return OKAY;
                         }
                 }
-                else if( screenX == 6){
+                else if( pgX == 6){
                         if(boardData[4] > 1){
                                 boardData[4] = XorO;
                                 return OKAY;
                         }
                 }
-                else if( screenX == 10){
+                else if( pgX == 10){
                         if(boardData[5] > 1){
                                 boardData[5] = XorO;
                                 return OKAY;
@@ -266,20 +266,20 @@ int updateBoardData(int * boardData, int screenX, int screenY, int XorO) {
         }
 
         /* Check row 3*/
-        else if(screenY == 5){
-                if(screenX == 2){
+        else if(pgY == 5){
+                if(pgX == 2){
                         if(boardData[6] > 1){
                                 boardData[6] = XorO;
                                 return OKAY;
                         }
                 }
-                else if( screenX == 6){
+                else if( pgX == 6){
                         if(boardData[7] > 1){
                                 boardData[7] = XorO;
                                 return OKAY;
                         }
                 }
-                else if( screenX == 10){
+                else if( pgX == 10){
                         if(boardData[8] > 1){
                                 boardData[8] = XorO;
                                 return OKAY;
