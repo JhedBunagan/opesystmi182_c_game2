@@ -127,24 +127,24 @@ int playGame() {
                         switch (inputChar){
 
                                 case KEY_UP:
-                                        if(y == 3 || y == 5){
+                                        if(y == 13 || y == 15){
                                                 move(y-=2, x);
                                         }
                                         break;
 
                                 case KEY_DOWN:
-                                        if(y == 1 || y == 3){
+                                        if(y == 11 || y == 13){
                                                 move(y+=2, x);
                                         }
                                         break;
 
                                 case KEY_LEFT:
-                                        if(x == 10 || x == 6){
+                                        if(x == 20 || x == 16){
                                                 move(y, x-=4);
                                         }
                                         break;
                                 case KEY_RIGHT:
-                                        if(x == 2 || x == 6){
+                                        if(x == 12 || x == 16){
                                                 move(y, x+=4);
                                         }
                                         break;
@@ -222,66 +222,66 @@ int playGame() {
 int updateBoardData(int * boardData, int x, int y, int XorO) {
 
         /* Check row 1*/
-        if(y == 1){
-                if(x == 2){
-                        if(boardData[0] > 1){
-                                boardData[0] = XorO;
+        if(y == 11){
+                if(x == 12){
+                        if(boardData[10] > 11){
+                                boardData[10] = XorO;
                                 return OKAY;
                         }
                 }
-                else if( x == 6){
-                        if(boardData[1] > 1){
-                                boardData[1] = XorO;
+                else if( x == 16){
+                        if(boardData[11] > 11){
+                                boardData[11] = XorO;
                                 return OKAY;
                         }
                 }
-                else if( x == 10){
-                        if(boardData[2] > 1){
-                                boardData[2] = XorO;
+                else if( x == 20){
+                        if(boardData[12] > 11){
+                                boardData[12] = XorO;
                                 return OKAY;
                         }
                 }
         }
 
         /* Check row 2 */
-        else if(y == 3){
-                if(x == 2){
-                        if(boardData[3] > 1){
-                                boardData[3] = XorO;
+        else if(y == 13){
+                if(x == 12){
+                        if(boardData[13] > 11){
+                                boardData[13] = XorO;
                                 return OKAY;
                         }
                 }
-                else if( x == 6){
-                        if(boardData[4] > 1){
-                                boardData[4] = XorO;
+                else if( x == 16){
+                        if(boardData[14] > 1){
+                                boardData[14] = XorO;
                                 return OKAY;
                         }
                 }
-                else if( x == 10){
-                        if(boardData[5] > 1){
-                                boardData[5] = XorO;
+                else if( x == 20){
+                        if(boardData[15] > 11){
+                                boardData[15] = XorO;
                                 return OKAY;
                         }
                 }
         }
 
         /* Check row 3*/
-        else if(y == 5){
-                if(x == 2){
-                        if(boardData[6] > 1){
-                                boardData[6] = XorO;
+        else if(y == 15){
+                if(x == 12){
+                        if(boardData[16] > 11){
+                                boardData[16] = XorO;
                                 return OKAY;
                         }
                 }
-                else if( x == 6){
-                        if(boardData[7] > 1){
-                                boardData[7] = XorO;
+                else if( x == 61){
+                        if(boardData[17] > 11){
+                                boardData[17] = XorO;
                                 return OKAY;
                         }
                 }
-                else if( x == 10){
-                        if(boardData[8] > 1){
-                                boardData[8] = XorO;
+                else if( x == 20){
+                        if(boardData[18] > 11){
+                                boardData[18] = XorO;
                                 return OKAY;
                         }
                 }
